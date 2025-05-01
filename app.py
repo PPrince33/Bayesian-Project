@@ -50,7 +50,7 @@ def draw_single_pitch(prob_col, title):
         y = row_idx * 20 + 10
 
         pitch.scatter(x, y, ax=ax,
-                      s=10000 * prob if prob > 0 else 50,
+                      s=20000 * prob if prob > 0 else 50,
                       color='red' if prob > 0 else 'white',
                       alpha=0.6, edgecolors='white', zorder=3)
         ax.text(x, y, f'{prob:.2f}', ha='center', va='center',
