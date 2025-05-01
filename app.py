@@ -82,10 +82,10 @@ for title, col in zip(titles, cols):
 merged_map_2 = pd.read_csv('merged_map.csv')
 
 # Create pivot tables for each probability type
-pivot_prior = merged_map_2.pivot(index='box_start', columns='box_end', values='probability_prior')
-pivot_1st_half = merged_map_2.pivot(index='box_start', columns='box_end', values='probability_1')
-pivot_posterior = merged_map_2.pivot(index='box_start', columns='box_end', values='posterior_probability')
-pivot_2nd_half = merged_map_2.pivot(index='box_start', columns='box_end', values='probability_2')
+pivot_prior = merged_map_2.pivot(index='box_start', columns='box_end', values='probability_prior').fillna(0)
+pivot_1st_half = merged_map_2.pivot(index='box_start', columns='box_end', values='probability_1').fillna(0)
+pivot_posterior = merged_map_2.pivot(index='box_start', columns='box_end', values='posterior_probability').fillna(0)
+pivot_2nd_half = merged_map_2.pivot(index='box_start', columns='box_end', values='probability_2').fillna(0)
 
 # Streamlit app title
 st.title("Transition Matrix Heat Maps for Probability Types")
