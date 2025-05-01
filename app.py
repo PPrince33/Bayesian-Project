@@ -92,8 +92,8 @@ st.title("Transition Matrix Heat Maps for Probability Types")
 
 # Function to plot heatmap
 def plot_heatmap(matrix, title):
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(matrix, annot=True, cmap="YlGnBu", fmt=".2f", cbar=True)
+    plt.figure(figsize=(10, 10))
+    sns.heatmap(matrix, annot=True, cmap="red", fmt=".2f", cbar=True)
     plt.title(title, fontsize=16)
     st.pyplot(plt)
 
