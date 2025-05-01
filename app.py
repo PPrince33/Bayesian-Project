@@ -1,3 +1,27 @@
+import subprocess
+import sys
+
+# Function to install a package using pip
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# List of required packages
+packages = [
+    "streamlit",
+    "pandas",
+    "mplsoccer",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "statsbombpy"
+]
+
+# Install all required packages
+for package in packages:
+    try:
+        install(package)
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to install {package}: {e}")
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
