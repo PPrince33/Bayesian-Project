@@ -28,7 +28,7 @@ import matplotlib.pyplot as plt
 from mplsoccer import Pitch
 
 # Load data
-merged_map = pd.read_csv('/Users/preciousprince/Downloads/merged_map.csv')
+merged_map = pd.read_csv('merged_map.csv')
 
 # Title
 st.title("🇪🇸 Spain 2nd Half Pass Prediction – 2024 UEFA Euro Final")
