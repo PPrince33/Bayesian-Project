@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from mplsoccer import Pitch
+import seaborn as sns
 
 # Load your CSV file (make sure it's in the same folder or adjust the path)
 merged_map = pd.read_csv('merged_map.csv')
@@ -73,3 +74,39 @@ cols = ['probability_prior', 'probability_1', 'posterior_probability', 'probabil
 
 for title, col in zip(titles, cols):
     st.pyplot(draw_single_pitch(col, title))
+
+
+
+
+# Load your CSV file (make sure it's in the same folder or adjust the path)
+merged_map_2 = pd.read_csv('merged_map.csv')
+
+# Create pivot tables for each probability type
+pivot_prior = merged_map_2.pivot(index='box_start', columns='box_end', values='probability_prior')
+pivot_1st_half = merged_map_2.pivot(index='box_start', columns='box_end', values='probability_1')
+pivot_posterior = merged_map_2.pivot(index='box_start', columns='box_end', values='posterior_probability')
+pivot_2nd_half = merged_map_2.pivot(index='box_start', columns='box_end', values='probability_2')
+
+# Streamlit app title
+st.title("Transition Matrix Heat Maps for Probability Types")
+
+# Function to plot heatmap
+def plot_heatmap(matrix, title):
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(matrix, annot=True, cmap="YlGnBu", fmt=".2f", cbar=True)
+    plt.title(title, fontsize=16)
+    st.pyplot(plt)
+
+# Plot all four heatmaps for each transition matrix
+st.subheader("Prior Probability Transition Matrix")
+plot_heatmap(pivot_prior, "Prior Probability Transition Matrix")
+
+st.subheader("1st Half Probability Transition Matrix")
+plot_heatmap(pivot_1st_half, "1st Half Probability Transition Matrix")
+
+st.subheader("Posterior Probability Transition Matrix")
+plot_heatmap(pivot_posterior, "Posterior Probability Transition Matrix")
+
+st.subheader("2nd Half Probability Transition Matrix")
+plot_heatmap(pivot_2nd_half, "2nd Half Probability Transition Matrix")
+
