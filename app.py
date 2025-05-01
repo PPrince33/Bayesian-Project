@@ -38,12 +38,13 @@ def draw_single_pitch(prob_col, title):
     for y in range(20, 80, 20):
         ax.axhline(y=y, color='black', linestyle=':', linewidth=1)
 
-    # Draw box numbers (1–24)
+    # Draw box numbers (1–24) with StatsBomb system: (0,0) is at the top left
     for box_num in range(1, 25):
         col_idx = (box_num - 1) // 4  # horizontal position
         row_idx = (box_num - 1) % 4   # vertical position
         x = col_idx * 20 + 10
-        y = row_idx * 20 + 10
+        y = 80 - (row_idx * 20 + 10)  # Flip y to match StatsBomb system
+
         ax.text(x, y + 7, str(box_num), ha='center', va='center', fontsize=10, color='grey', alpha=0.5)
 
     # Draw probabilities
@@ -54,7 +55,7 @@ def draw_single_pitch(prob_col, title):
         col_idx = (box_end - 1) // 4
         row_idx = (box_end - 1) % 4
         x = col_idx * 20 + 10
-        y = row_idx * 20 + 10
+        y = 80 - (row_idx * 20 + 10)  # Flip y to match StatsBomb system
 
         pitch.scatter(x, y, ax=ax,
                       s=20000 * prob if prob > 0 else 50,
@@ -72,4 +73,3 @@ cols = ['probability_prior', 'probability_1', 'posterior_probability', 'probabil
 
 for title, col in zip(titles, cols):
     st.pyplot(draw_single_pitch(col, title))
-
