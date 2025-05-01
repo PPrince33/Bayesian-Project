@@ -46,7 +46,7 @@ def draw_single_pitch(prob_col, title):
         x = col_idx * 20 + 10
         y = 80 - (row_idx * 20 + 10)  # Flip y to match StatsBomb system
 
-        ax.text(x, y + 7, str(box_num), ha='center', va='center', fontsize=10, color='black', alpha=0.5)
+        ax.text(x, y + 7, str(box_num), ha='center', va='center', fontsize=20, color='black', alpha=1)
 
     # Draw probabilities
     for _, row in data.iterrows():
